@@ -109,6 +109,11 @@ function autoMoonRocks() {
 
 setInterval(autoMoonRocks, 3000)
 
+function test() {
+  moonRock += 100000
+
+}
+
 
 
 // SECTION
