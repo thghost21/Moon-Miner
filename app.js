@@ -50,13 +50,13 @@ function buyUpgrade(indexNumber) {
     if (moonRock < 1) {
       return
 
-    } else if (moonRock > upgrade.price) {
+    } else if (moonRock >= upgrade.price) {
       moonRock -= upgrade.price
       clickStats += upgrade.bonus
       upgrade.quantity++
+      update()
 
-
-
+      clickUpgrades.forEach(upgrade => updateClickStats(upgrade.name))
     }
 
   }
@@ -72,4 +72,13 @@ function update() {
 
 
 
+
+};
+function updateClickStats(name) {
+  const statsElem = document.getElementById(name + 'Stats')
+  const foundDrillStats = clickUpgrades.find(upgrade => upgrade.name == name)
+
+  let bonus = foundDrillStats.bonus * foundDrillStats.quantity
+
+  statsElem.innerText = `${foundDrillStats.quantity} ${foundDrillStats.name} ${bonus}`
 }
