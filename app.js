@@ -45,7 +45,7 @@ function mine() {
   update()
 }
 
-function buyUpgrade(indexNumber) {
+function buyClickUpgrade(indexNumber) {
 
 
   for (let i = 0; i < clickUpgrades.length; i++) {
@@ -57,10 +57,13 @@ function buyUpgrade(indexNumber) {
       moonRock -= upgrade.price
       clickStats += upgrade.bonus
       upgrade.quantity++
+      upgrade.price * 1.20
+
+      drawClickUpdatedPrices(upgrade.name)
       update()
 
       clickUpgrades.forEach(upgrade => updateClickStats(upgrade.name))
-      automaticUpgrades.forEach(upgrade => updateAutoStats(upgrade.name))
+
     }
 
   }
@@ -69,8 +72,39 @@ function buyUpgrade(indexNumber) {
 
 }
 
+function buyAutoUpgrade(indexNumber) {
 
 
+  for (let i = 0; i < automaticUpgrades.length; i++) {
+    const upgrade = automaticUpgrades[indexNumber];
+    if (moonRock < 1) {
+      return
+
+    } else if (moonRock >= upgrade.price) {
+      moonRock -= upgrade.price
+      autoStats += upgrade.bonus
+      upgrade.quantity++
+      upgrade.price += 1.20
+
+      drawAutoUpdatedPrices(upgrade.name)
+      update()
+
+      automaticUpgrades.forEach(upgrade => updateAutoStats(upgrade.name))
+      return
+    }
+
+  }
+  console.log(moonRock, clickStats);
+  update()
+
+}
+
+function autoMoonRocks() {
+  moonRock += autoStats
+  update()
+}
+
+setInterval(autoMoonRocks, 3000)
 
 
 
@@ -79,10 +113,11 @@ function update() {
   const moonRockElem = document.getElementById('moonRock')
   moonRockElem.innerText = `${moonRock} 🪨`
 
+  const clickStatElem = document.getElementById('perClick')
+  clickStatElem.innerText = `+${clickStats} Per Click`
 
-
-
-
+  const autoStatElem = document.getElementById('perCycle')
+  autoStatElem.innerText = `+${autoStats} Per Cycle`
 };
 
 
@@ -92,23 +127,34 @@ function updateClickStats(name) {
 
   let bonus = foundClickStats.bonus * foundClickStats.quantity
 
-  statsElem.innerText = `${foundClickStats.quantity} ${foundClickStats.name} => ${bonus}`
+  statsElem.innerText = `${foundClickStats.quantity} ${foundClickStats.name} => ${bonus} per click`
 }
 
 
 function updateAutoStats(name) {
-  let autoBonus = 0
 
   const statsElem = document.getElementById(name + 'Stat')
-  const foundAutoStats = clickUpgrades.find(upgrade => upgrade.name == name)
+  const foundAutoStats = automaticUpgrades.find(upgrade => upgrade.name == name)
 
-  autoBonus = foundAutoStats.bonus * foundAutoStats.quantity
+  let autoBonus = foundAutoStats.bonus * foundAutoStats.quantity
 
-  statsElem.innerText = `${foundAutoStats.quantity} ${foundAutoStats.name} ${autoBonus}`
+  statsElem.innerText = `${foundAutoStats.quantity} ${foundAutoStats.name} => ${autoBonus} per Cycle`
 }
 
+function drawAutoUpdatedPrices(name) {
+  const updatedPriceElem = document.getElementById(name + 'Price')
+  const foundPriceUpdate = automaticUpgrades.find(upgrade => upgrade.name == name)
+
+  updatedPriceElem.innerText = `${foundPriceUpdate.price} 🪨`
+
+}
+function drawClickUpdatedPrices(name) {
+  const updatedPriceElem = document.getElementById(name + 'Price')
+  const foundPriceUpdate = clickUpgrades.find(upgrade => upgrade.name == name)
+
+  updatedPriceElem.innerText = `${foundPriceUpdate.price} 🪨`
+}
 
 update()
-updateAutoStats()
-updateClickStats()
-
+//updateAutoStats()
+//updateClickStats()
