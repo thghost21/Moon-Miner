@@ -25,7 +25,7 @@
           </div>
           <div class="col-12 py-5">
             <div class="text-center">
-              <img class="moonSize"
+              <img onclick="mine()" class="moonSize"
                 src="https://www.louismoinet.com/wp-content/uploads/2021/06/RS-Header-Moon_840px_3.png" alt="Moon">
             </div>
           </div>
@@ -33,6 +33,69 @@
       </div>
     </section>
     <!-- SECTION Upgrades, Status -->
+    <section>
+      <div class="container">
+        <div class="row align-items-center  textShadow ">
+          <div class="col-md-5 upgradesStyle">
+            <div class="card text-bg-light mb-3 controlPanelBG text-light" style="min-width: 30rem;">
+              <div class="card-header fw-bold text-light textShadow text-bg-warning">Upgrades</div>
+              <div class="card-body d-flex justify-content-evenly fw-bold">
+                <div>
+                  <button class="btn btn-warning">5🪨</button>
+                  <div> Buy Pickaxe +1</div>
+                  <button class="btn btn-warning">25🪨</button>
+                  <div>Buy Drill +5</div>
+                </div>
+                <div>
+                  <button class="btn btn-warning">1000🪨</button>
+                  <div>Buy Astronaut+50</div>
+                  <button class="btn btn-warning">10000🪨</button>
+                  <div>Buy Space Station +100</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 bankStyle">
+            <div class="card text-bg-light mb-3 controlPanelBG text-light" style="max-width: 18rem; min-height: 15rem;">
+              <div class="card-header fw-bold text-bg-danger">Resources</div>
+              <div class="card-body text-center">
+                <h2 id="moonRock" class="card-title text-bg-red text-light">1000 🪨</h2>
+                <h2 class="card-title text-bg-red text-light">+1 Per click</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 statsStyle ">
+            <div class="card text-bg-light mb-3 controlPanelBG text-light" style="max-width: 30rem;">
+              <div class="card-header fw-bold text-bg-primary">Status</div>
+              <div class="card-body d-flex justify-content-evenly fw-bold">
+                <div>
+                  <h5 class="card-title">CLICK STATS</h5>
+                  <div>
+                    <Span>1 Pickaxe</Span>
+                    <span class="mdi mdi-redo fs-3">12</span>
+                  </div>
+                  <div>
+                    <Span>1 Pickaxe</Span>
+                    <span class="mdi mdi-redo fs-3">12</span>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="card-title">AUTOMATIC STATS</h5>
+                  <div>
+                    <Span>1 Astronaut</Span>
+                    <span class="mdi mdi-redo fs-3">12</span>
+                  </div>
+                  <div>
+                    <Span>1 Astronaut</Span>
+                    <span class="mdi mdi-redo fs-3">12</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <script src="app.js"></script>
 </body>
