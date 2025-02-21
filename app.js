@@ -21,20 +21,23 @@ let clickUpgrades = [
 let automaticUpgrades = [
   {
     name: 'astronaut',
-    price: 600,
+    price: 1000,
     quantity: 0,
-    bonus: 20
+    bonus: 50
   },
   {
     name: 'spaceStation',
-    price: 600,
+    price: 10000,
     quantity: 0,
-    bonus: 100
+    bonus: 500
   }
 ];
 
+
+
+
 // SECTION
-update()
+
 
 function mine() {
   moonRock += clickStats
@@ -57,6 +60,7 @@ function buyUpgrade(indexNumber) {
       update()
 
       clickUpgrades.forEach(upgrade => updateClickStats(upgrade.name))
+      automaticUpgrades.forEach(upgrade => updateAutoStats(upgrade.name))
     }
 
   }
@@ -64,6 +68,11 @@ function buyUpgrade(indexNumber) {
   update()
 
 }
+
+
+
+
+
 
 // SECTION
 function update() {
@@ -73,12 +82,33 @@ function update() {
 
 
 
+
 };
+
+
 function updateClickStats(name) {
   const statsElem = document.getElementById(name + 'Stats')
-  const foundDrillStats = clickUpgrades.find(upgrade => upgrade.name == name)
+  const foundClickStats = clickUpgrades.find(upgrade => upgrade.name == name)
 
-  let bonus = foundDrillStats.bonus * foundDrillStats.quantity
+  let bonus = foundClickStats.bonus * foundClickStats.quantity
 
-  statsElem.innerText = `${foundDrillStats.quantity} ${foundDrillStats.name} ${bonus}`
+  statsElem.innerText = `${foundClickStats.quantity} ${foundClickStats.name} => ${bonus}`
 }
+
+
+function updateAutoStats(name) {
+  let autoBonus = 0
+
+  const statsElem = document.getElementById(name + 'Stat')
+  const foundAutoStats = clickUpgrades.find(upgrade => upgrade.name == name)
+
+  autoBonus = foundAutoStats.bonus * foundAutoStats.quantity
+
+  statsElem.innerText = `${foundAutoStats.quantity} ${foundAutoStats.name} ${autoBonus}`
+}
+
+
+update()
+updateAutoStats()
+updateClickStats()
+
