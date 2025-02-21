@@ -7,6 +7,7 @@ body {
 
 .moonSize {
   max-width: 40dvh;
+  user-select: none;
 }
 
 .upgradesStyle {

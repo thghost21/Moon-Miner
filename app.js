@@ -58,6 +58,7 @@ function buyClickUpgrade(indexNumber) {
       clickStats += upgrade.bonus
       upgrade.quantity++
       upgrade.price *= 1.20
+      upgrade.price = Math.trunc(upgrade.price)
 
       drawClickUpdatedPrices(upgrade.name)
       update()
@@ -84,7 +85,9 @@ function buyAutoUpgrade(indexNumber) {
       moonRock -= upgrade.price
       autoStats += upgrade.bonus
       upgrade.quantity++
-      upgrade.price * 1.20
+
+      upgrade.price *= 1.20
+      upgrade.price = Math.trunc(upgrade.price)
 
       drawAutoUpdatedPrices(upgrade.name)
       update()
@@ -158,3 +161,5 @@ function drawClickUpdatedPrices(name) {
 update()
 //updateAutoStats()
 //updateClickStats()
+
+
