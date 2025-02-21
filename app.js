@@ -64,7 +64,7 @@ function buyClickUpgrade(indexNumber) {
       update()
 
       clickUpgrades.forEach(upgrade => updateClickStats(upgrade.name))
-
+      return
     }
 
   }
