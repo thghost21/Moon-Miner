@@ -57,7 +57,7 @@ function buyClickUpgrade(indexNumber) {
       moonRock -= upgrade.price
       clickStats += upgrade.bonus
       upgrade.quantity++
-      upgrade.price * 1.20
+      upgrade.price *= 1.20
 
       drawClickUpdatedPrices(upgrade.name)
       update()
@@ -84,7 +84,7 @@ function buyAutoUpgrade(indexNumber) {
       moonRock -= upgrade.price
       autoStats += upgrade.bonus
       upgrade.quantity++
-      upgrade.price += 1.20
+      upgrade.price * 1.20
 
       drawAutoUpdatedPrices(upgrade.name)
       update()
@@ -149,7 +149,7 @@ function drawAutoUpdatedPrices(name) {
 
 }
 function drawClickUpdatedPrices(name) {
-  const updatedPriceElem = document.getElementById(name + 'Price')
+  const updatedPriceElem = document.getElementById(name + 'Pricey')
   const foundPriceUpdate = clickUpgrades.find(upgrade => upgrade.name == name)
 
   updatedPriceElem.innerText = `${foundPriceUpdate.price} 🪨`
